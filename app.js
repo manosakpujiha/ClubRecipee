@@ -5,7 +5,7 @@ const port = 3000;
 
 
 app.get('/', (req, res) => {
-    res.send('Hello form ClubRecipee Manos2!');
+    res.send('Hello form ClubRecipee M!');
     });
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);
