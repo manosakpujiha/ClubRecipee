@@ -1,0 +1,125 @@
+
+    const seedrecipes = [
+        {
+            title: 'Pancakes - seed',
+            description: 'A delicious breakfast treat',
+            ingredients: '1 cup flour, 1 cup milk, 1 egg',
+            instructions: 'Mix ingredients, cook on griddle',
+            preptime: 10,
+            servings: 4
+        },
+        {
+            title: 'Spaghetti Bolognese - seed',
+            description: 'Classic Italian pasta dish',
+            ingredients: '200g spaghetti, 100g minced beef, tomato sauce',
+            instructions: 'Cook pasta, prepare sauce, mix together',
+            preptime: 30,
+            servings: 2
+        },
+        {
+            title: 'Chicken Curry - seed',
+            description: 'Spicy and flavorful chicken curry',
+            ingredients: '500g chicken, curry powder, coconut milk',
+            instructions: 'Cook chicken, add spices, simmer with coconut milk',
+            preptime: 40,
+            servings: 4
+        },
+        {
+            title: 'Caesar Salad - seed',
+            description: 'Fresh and healthy salad',
+            ingredients: 'Lettuce, croutons, Caesar dressing, Parmesan cheese',
+            instructions: 'Mix all ingredients together',
+            preptime: 15,
+            servings: 2
+        },
+        {
+            title: 'Beef Tacos - seed',
+            description: 'Mexican style beef tacos',
+            ingredients: 'Taco shells, minced beef, lettuce, cheese, salsa',
+            instructions: 'Cook beef, assemble tacos with ingredients',
+            preptime: 20,
+            servings: 3
+        },
+        {
+            title: 'Vegetable Stir Fry - seed',
+            description: 'Quick and easy vegetable stir fry',
+            ingredients: 'Mixed vegetables, soy sauce, garlic, ginger',
+            instructions: 'Stir fry vegetables with sauce and spices',
+            preptime: 15,
+            servings: 2
+        },
+        {
+            title: 'Chocolate Cake - seed',
+            description: 'Rich and moist chocolate cake',
+            ingredients: 'Flour, cocoa powder, sugar, eggs, butter',
+            instructions: 'Mix ingredients, bake in oven',
+            preptime: 60,
+            servings: 8
+        },
+        {
+            title: 'Grilled Cheese Sandwich - seed',    
+            description: 'Classic grilled cheese sandwich',
+            ingredients: 'Bread, cheese, butter',
+            instructions: 'Assemble sandwich, grill until golden brown',
+            preptime: 10,
+            servings: 1
+        },
+        {
+            title: 'Tomato Soup - seed',
+            description: 'Warm and comforting tomato soup',
+            ingredients: 'Tomatoes, onion, garlic, vegetable broth',
+            instructions: 'Cook ingredients, blend until smooth',
+            preptime: 30,
+            servings: 4
+        },
+        {
+            title: 'Omelette - seed',
+            description: 'Fluffy and delicious omelette',
+            ingredients: 'Eggs, cheese, ham, vegetables',
+            instructions: 'Whisk eggs, cook with fillings in pan',
+            preptime: 10,
+            servings: 1
+        },
+        {
+            title: 'BBQ Ribs - seed',
+            description: 'Tender and flavorful BBQ ribs',
+            ingredients: 'Pork ribs, BBQ sauce, spices',
+            instructions: 'Season ribs, bake with BBQ sauce',
+            preptime: 120,
+            servings: 4
+        },
+        {
+            title: 'Margarita Pizza - seed',
+            description: 'Classic Italian pizza',
+            ingredients: 'Pizza dough, tomato sauce, mozzarella, basil',
+            instructions: 'Assemble pizza, bake in oven',
+            preptime: 20,
+            servings: 2
+        },
+        {
+            title: 'Fish Tacos - seed',
+            description: 'Fresh and tasty fish tacos',
+            ingredients: 'Taco shells, fish fillets, cabbage, lime, salsa',
+            instructions: 'Cook fish, assemble tacos with ingredients',
+            preptime: 20,
+            servings: 3
+        },
+        {
+            title: 'Lemonade - seed',
+            description: 'Refreshing homemade lemonade',
+            ingredients: 'Lemons, sugar, water',
+            instructions: 'Mix ingredients, chill in fridge',
+            preptime: 10,
+            servings: 4
+        },
+        {
+            title: 'Apple Pie - seed',
+            description: 'Classic apple pie with a flaky crust',
+            ingredients: 'Apples, flour, sugar, butter, cinnamon',
+            instructions: 'Prepare crust, fill with apples, bake',
+            preptime: 90,
+            servings: 8
+        }
+    ];
+
+    module.exports = seedrecipes;
