@@ -21,17 +21,9 @@ app.get('/', (req, res) => {
     res.render('home');
 });
 
-app.get('/makerecipe', async (req, res) => {
-    const recipe = new Recipe({
-        title: 'Pancakes',
-        description: 'A delicious breakfast treat',
-        ingredients: '1 cup flour, 1 cup milk, 1 egg',
-        instructions: 'Mix ingredients, cook on griddle',
-        preptime: 10,
-        servings: 4
-    })
-    await recipe.save();
-    res.send('Recipe created!');
+app.get('/recipes', async (req, res) => {
+    const recipes = await Recipe.find({});
+    res.render('recipes/index', { recipes });
 });
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
