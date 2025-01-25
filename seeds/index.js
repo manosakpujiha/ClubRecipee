@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const Recipe = require('../models/recipe');
 const seedrecipes = require('./data');
 
-mongoose.connect('mongodb+srv://manosakpujiha:UrXx4YCTKpaANGFk@clubrecipee-cluster.1x1x0.mongodb.net/club-recipee');
+mongoose.connect('mongodb+srv://vercel-admin-user:ed50OwKR4gNd8UFN@cluster0.0y17h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+
 
 const db = mongoose.connection;
 
