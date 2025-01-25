@@ -10,10 +10,7 @@ const MONGODB_URI = process.env.VERCEL_ENV === 'production'
     ? process.env.MONGODB_URI_PROD 
     : 'mongodb://127.0.0.1:27017/club-recipee';
 
-mongoose.connect(MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+mongoose.connect(MONGODB_URI);
 // const MONGODB_URI = 'mongodb+srv://vercel-admin-user:ed50OwKR4gNd8UFN@cluster0.0y17h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority' || 'mongodb://127.0.0.1:27017/club-recipee'
 // mongoose.connect(`${MONGODB_URI}`);
 
@@ -35,7 +32,7 @@ app.get('/', (req, res) => {
 });
 app.get('/env', (req, res) => {
     console.log(process.env);
-    res.send(process.env);
+    res.send(process.env.NODE_ENV);
 });
 
 app.get('/recipes', async (req, res) => {
@@ -45,7 +42,4 @@ app.get('/recipes', async (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
-
-
-
 // module.exports = app; 
