@@ -11,8 +11,7 @@ const MONGODB_URI = process.env.VERCEL_ENV === 'production'
     : 'mongodb://127.0.0.1:27017/club-recipee';
 
 mongoose.connect(MONGODB_URI);
-// const MONGODB_URI = 'mongodb+srv://vercel-admin-user:ed50OwKR4gNd8UFN@cluster0.0y17h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority' || 'mongodb://127.0.0.1:27017/club-recipee'
-// mongoose.connect(`${MONGODB_URI}`);
+
 
 const db = mongoose.connection;
 
@@ -27,17 +26,31 @@ const port = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+app.use(express.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
     res.render('home');
 });
-app.get('/env', (req, res) => {
-    console.log(process.env);
-    res.send(process.env.NODE_ENV);
-});
-
 app.get('/recipes', async (req, res) => {
     const recipes = await Recipe.find({});
     res.render('recipes/index', { recipes });
+});
+app.get('/recipes/new', async (req, res) => {
+    const recipe = new Recipe(req.body.recipe);
+    await recipe.save();
+    res.redirect(`/recipes/${recipe._id}`);
+});
+app.get('/recipes/:id', async (req, res) => {
+    const { id } = req.params;
+    const recipe = await Recipe.findById(id);
+    res.render('recipes/show', { recipe });
+});
+app.post('/recipes', async (req, res) => {
+    console.log(req.body);
+    res.send(req.body);
+
+    // const recipe = new Recipe(req.body.recipe);
+    // await recipe.save();
+    // res.redirect(`/recipes/${recipe._id}`);
 });
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

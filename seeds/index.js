@@ -2,9 +2,7 @@ const mongoose = require('mongoose');
 const Recipe = require('../models/recipe');
 const seedrecipes = require('./data');
 
-mongoose.connect('mongodb+srv://vercel-admin-user:ed50OwKR4gNd8UFN@cluster0.0y17h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
-
-
+mongoose.connect('mongodb://127.0.0.1:27017/club-recipee')
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
