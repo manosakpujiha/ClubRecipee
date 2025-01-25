@@ -3,7 +3,11 @@ const path = require('path');
 const mongoose = require('mongoose');
 const Recipe = require('./models/recipe');
 
-mongoose.connect('mongodb://127.0.0.1:27017/club-recipee')
+mongoose.connect('mongodb+srv://manosakpujiha:UrXx4YCTKpaANGFk@clubrecipee-cluster.1x1x0.mongodb.net/club-recipee', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
