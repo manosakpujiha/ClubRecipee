@@ -7,17 +7,16 @@
 </head>
 <body>
     <a href="/">Back to Home</a>
-    <h1>Recipe Details Page <%= recipe.title %> </h1>
+    <h1>Recipe Details Page for <%= recipe.title %> </h1>
     <p><strong>Preparation Time:</strong> <%= recipe.preptime %> minutes</p>
     <p><strong>Description:</strong> <%= recipe.description %></p>
     <p><strong>Ingredients:</strong> <%= recipe.ingredients %></p>
     <p><strong>Servings:</strong> <%= recipe.servings %></p>
     <p><strong>Instructions:</strong> <%= recipe.instructions %></p>
-    <a href="/recipes/<%= recipe._id %>/edit">Edit</a>
+    <button><a href="/recipes/<%= recipe._id %>/edit">Edit</a></button>
     <form action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
         <button>Delete</button>
     </form>
     <a href="/recipes">Back to all recipes</a>
-    
 </body>
 </html>

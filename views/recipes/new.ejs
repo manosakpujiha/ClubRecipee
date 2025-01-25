@@ -7,22 +7,24 @@
 </head>
 <body>
     <a href="/">Back to Home</a>
+    <br>
+    <a href="/recipes">Back to all recipes</a>
     <h1>New Recipe</h1>
     <form action="/recipes" method="POST">
         <label for="title">Title:</label>
-        <input type="text" id="title" name="title" required>
+        <input type="text" id="title" name="recipe[title]" required>
         <label for="preptime">Preparation Time:</label>
-        <input type="number" id="preptime" name="preptime" required>
+        <input type="number" id="preptime" name="recipe[preptime]" required>
         <label for="description">Description:</label>
-        <input type="text" id="description" name="description" required>
+        <input type="text" id="description" name="recipe[description]" required>
         <label for="ingredients">Ingredients:</label>
-        <input type="text" id="ingredients" name="ingredients" required>
+        <input type="text" id="ingredients" name="recipe[ingredients]" required>
         <label for="servings">Servings:</label>
-        <input type="number" id="servings" name="servings" required>
+        <input type="number" id="servings" name="recipe[servings]" required>
         <label for="instructions">Instructions:</label>
-        <input type="text" id="instructions" name="instructions" required>
+        <input type="text" id="instructions" name="recipe[instructions]" required>
         <button type="submit">Create</button>
     </form>
-    <a href="/recipes">Back to all recipes</a>
+    
 </body>
 </html>
