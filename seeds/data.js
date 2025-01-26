@@ -268,7 +268,7 @@ const seedrecipes = [
         preptime: 90,
         servings: 8,
         image: 'https://picsum.photos/seed/apple-pie/1600/900'
-    },
+    }
 ];
 
 module.exports = seedrecipes;

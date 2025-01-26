@@ -13,12 +13,7 @@
                             <p class="card-text"><strong>Preparation Time:</strong> <%= recipe.preptime %> minutes</p>
                             <p class="card-text"><strong>Description:</strong> <%= recipe.description %></p>
                             <p class="card-text"><strong>Ingredients:</strong> <%= recipe.ingredients %></p>
-                            <p class="card-text"><strong>Servings:</strong> <%= recipe.servings %></p>
-                            <p class="card-text"><strong>Instructions:</strong> <%= recipe.instructions %></p>
-                            <button><a href="/recipes/<%= recipe._id %>/edit">Edit</a></button>
-                            <form action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
-                                <button>Delete</button>
-                            </form>
+                            
                         </div>
                     </div>
                 </div>
