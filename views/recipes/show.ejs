@@ -6,7 +6,8 @@
     <title>Recipe details</title>
 </head>
 <body>
-    <a href="/">Back to Home</a>
+    <a href="/">Back to Home</a><br>
+    <a href="/recipes">Back to all recipes</a>
     <h1>Recipe Details Page for <%= recipe.title %> </h1>
     <p><strong>Preparation Time:</strong> <%= recipe.preptime %> minutes</p>
     <p><strong>Description:</strong> <%= recipe.description %></p>
@@ -17,6 +18,6 @@
     <form action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
         <button>Delete</button>
     </form>
-    <a href="/recipes">Back to all recipes</a>
+    
 </body>
 </html>
