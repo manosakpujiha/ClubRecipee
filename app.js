@@ -8,7 +8,10 @@ dotenv.config();
 const MONGODB_URI = process.env.VERCEL_ENV === 'production' 
     ? `${process.env.MONGODB_URI_PROD}club-recipee`
     : 'mongodb://127.0.0.1:27017/club-recipee';
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, {
+    dbName: 'club-recipee', // Explicitly specify the database name
+    
+});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open',  () => {
