@@ -8,7 +8,7 @@ const RecipeSchema = new Schema({
     instructions: String,
     preptime: Number, // Preparation time in minutes
     servings: Number, // Number of servings the recipe yields
-    // image: String
+    image: String
 });
 
 

@@ -1,7 +1,6 @@
 <% layout('layouts/boilerplate') %>
-    <a href="/">Back to Home</a><br>
-    <a href="/recipes">Back to all recipes</a>
     <h1>Recipe Details Page for <%= recipe.title %> </h1>
+    <img src="<%= recipe.image %>" alt="<%= recipe.title %>" style="width: 300px; height: 300px;">
     <p><strong>Preparation Time:</strong> <%= recipe.preptime %> minutes</p>
     <p><strong>Description:</strong> <%= recipe.description %></p>
     <p><strong>Ingredients:</strong> <%= recipe.ingredients %></p>

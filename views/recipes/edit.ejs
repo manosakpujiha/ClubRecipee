@@ -1,7 +1,4 @@
 <% layout('layouts/boilerplate') %>
-    <a href="/">Back to Home</a>
-    <br>
-    <a href="/recipes/<%=recipe._id%> ">Back To Recipe</a>
     <h1>Edit Recipe</h1>
     <form action="/recipes/<%=recipe._id%>?_method=PUT" method="POST">
         <label for="title">Title:</label>
