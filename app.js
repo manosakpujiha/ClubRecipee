@@ -6,7 +6,7 @@ const Recipe = require('./models/recipe');
 const dotenv = require('dotenv');
 dotenv.config();
 const MONGODB_URI = process.env.VERCEL_ENV === 'production' 
-    ? process.env.MONGODB_URI_PROD 
+    ? `${process.env.MONGODB_URI_PROD}club-recipee`
     : 'mongodb://127.0.0.1:27017/club-recipee';
 mongoose.connect(MONGODB_URI);
 const db = mongoose.connection;
