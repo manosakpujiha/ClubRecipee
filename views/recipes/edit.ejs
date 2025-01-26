@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Recipe</title>
-</head>
-<body>
+<% layout('layouts/boilerplate') %>
     <a href="/">Back to Home</a>
     <br>
     <a href="/recipes/<%=recipe._id%> ">Back To Recipe</a>
@@ -25,6 +18,3 @@
         <input type="text" id="instructions" name="recipe[instructions]" value="<%= recipe.instructions %>" required>
         <button type="submit">Update Recipe</button>
     </form>
-    
-</body>
-</html>
