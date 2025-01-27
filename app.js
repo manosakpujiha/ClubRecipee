@@ -44,7 +44,7 @@ app.post('/recipes', async (req, res) => {
 app.get('/recipes/:id', async (req, res) => {
     const { id } = req.params;
     const recipe = await Recipe.findById(id);
-    res.render('recipes/show', { recipe });
+    res.render('recipes/details', { recipe });
 });
 app.get('/recipes/:id/edit', async (req, res) => {
     const { id } = req.params;
