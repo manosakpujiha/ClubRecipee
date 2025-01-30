@@ -23,21 +23,5 @@
             </form>
             </div>
           </div>
-
-
-
-<h1 class="text-light-green"><%= recipe.title %> </h1>
-<img src="<%= recipe.image %>" alt="<%= recipe.title %>" class="d-block mx-auto my-5" style="width: 800px;">
-<p class="text-light-green"><strong>Preparation Time:</strong> <%= recipe.preptime %> minutes</p>
-<p class="text-light-green"><strong>Description:</strong> <%= recipe.description %></p>
-<p class="text-light-green"><strong>Ingredients:</strong> <%= recipe.ingredients %></p>
-<p class="text-light-green"><strong>Servings:</strong> <%= recipe.servings %></p>
-<p class="text-light-green"><strong>Instructions:</strong> <%= recipe.instructions %></p>
-    <div class="d-flex">
-        <a href="/recipes/<%= recipe._id %>/edit" class="btn btn-primary me-3 text-white text-decoration-none">Edit</a>
-        <form action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
-            <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
-    </div>
     </div>
 </div>
