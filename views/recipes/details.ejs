@@ -1,4 +1,31 @@
 <% layout('layouts/boilerplate') %>
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card bg-dark text-white">
+            <img src="<%= recipe.image %>" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><%= recipe.title %></h5>
+                <p class="card-text text-muted"><%= recipe.description %></p>
+                <div class="d-flex ">
+                    <p class="card-text"><strong>Preparation Time:</strong> <%= recipe.preptime %> minutes</p>
+                    <p class="card-text ms-5"><strong>Servings:</strong> <%= recipe.servings %></p>
+                </div>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Ingredients:</strong> <%= recipe.ingredients %></li>
+                <li class="list-group-item"><strong>Instructions:</strong> <%= recipe.instructions %></li>
+            </ul>
+            <div class="card-body">
+              <a class="card-link btn btn-warning me-3 text-white text-decoration-none" href="/recipes/<%= recipe._id %>/edit">Edit</a>
+              <form class="d-inline" action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            </div>
+          </div>
+
+
+
 <h1 class="text-light-green"><%= recipe.title %> </h1>
 <img src="<%= recipe.image %>" alt="<%= recipe.title %>" class="d-block mx-auto my-5" style="width: 800px;">
 <p class="text-light-green"><strong>Preparation Time:</strong> <%= recipe.preptime %> minutes</p>
@@ -9,6 +36,8 @@
     <div class="d-flex">
         <a href="/recipes/<%= recipe._id %>/edit" class="btn btn-primary me-3 text-white text-decoration-none">Edit</a>
         <form action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
-            <button class="btn btn-danger">Delete</button>
+            <button type="submit" class="btn btn-danger">Delete</button>
         </form>
     </div>
+    </div>
+</div>

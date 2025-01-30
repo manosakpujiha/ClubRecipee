@@ -53,7 +53,7 @@ app.get('/recipes/:id/edit', async (req, res) => {
 });
 app.put('/recipes/:id', async (req, res) => {
     const { id } = req.params;
-    const recipe = await Recipe.findByIdAndUpdate(id, { ...req.body.recipe });
+    const recipe = await Recipe.findByIdAndUpdate(id, { ...req.body.recipe }, { new: true });
     res.redirect(`/recipes/${recipe._id}`);
 });
 app.delete('/recipes/:id', async (req, res) => {
