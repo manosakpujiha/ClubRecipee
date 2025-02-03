@@ -2,11 +2,12 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
-const { recipeSchema } = require('./validationSchemas');
+const { recipeSchema, reviewSchema } = require('./validationSchemas');
 const catchAsync = require('./helpers/catchAsync');
 const ExpressError = require('./helpers/ExpressError');
 const method = require('method-override');
 const Recipe = require('./models/recipe');
+const Review = require('./models/reviews');
 const dotenv = require('dotenv');
 dotenv.config();
 const MONGODB_URI = process.env.VERCEL_ENV === 'production' 
@@ -31,7 +32,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(method('_method'));
 
 const validateRecipe = (req, res, next) => {
-    
     const { error } = recipeSchema.validate(req.body);
     if (error) {
         const msg = error.details.map(el => el.message).join(',');
@@ -40,7 +40,15 @@ const validateRecipe = (req, res, next) => {
         next();
     }
 }
-
+const validateReview = (req, res, next) => {
+    const { error } = reviewSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(',');
+        throw new ExpressError(msg, 400);
+    } else {
+        next();
+    }
+}   
 app.get('/', (req, res) => {
     res.render('home');
 });
@@ -60,7 +68,8 @@ app.post('/recipes', validateRecipe, catchAsync (async (req, res, next) => {
 }));
 app.get('/recipes/:id', catchAsync (async (req, res) => {
     const { id } = req.params;
-    const recipe = await Recipe.findById(id);
+    const recipe = await Recipe.findById(id).populate('reviews');
+    console.log(recipe);
     res.render('recipes/details', { recipe });
 }));
 app.get('/recipes/:id/edit', catchAsync(async (req, res) => {
@@ -78,6 +87,21 @@ app.delete('/recipes/:id', catchAsync(async (req, res) => {
     await Recipe.findByIdAndDelete(id);
     res.redirect('/recipes');
 }));
+app.post('/recipes/:id/reviews', validateReview, catchAsync(async (req, res) => {
+    const { id } = req.params;
+    const recipe = await Recipe.findById(id);
+    const review = new Review(req.body.review);
+    recipe.reviews.push(review);
+    await Promise.all([review.save(), recipe.save()]);
+    res.redirect(`/recipes/${recipe._id}`);
+}));
+app.delete('/recipes/:id/reviews/:reviewId', catchAsync(async (req, res) => {
+    const { id, reviewId } = req.params;
+    await Recipe.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/recipes/${id}`);
+}));
+
 app.all('*', (req, res, next) => {
     // res.send('404!!');
     next(new ExpressError('Page Not Found manos', 404));
