@@ -2,37 +2,76 @@
 <div class="row">
     <h1 class="text-center">Add a new recipe</h1>
     <div clas="col-6 offset-3">
-    <form action="/recipes" method="POST">
+    <form action="/recipes" method="POST" novalidate class="validate-form">
         <div class="mb-3">
             <label for="title" class="form-label">Title:</label>
             <input type="text" id="title" name="recipe[title]" class="form-control" required>
+            <div class="invalid-feedback">
+                Please provide a valid title.
+            </div>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+           
         </div>
         <div class="mb-3">
             <label for="preptime" class="form-label">Preparation Time:</label>
             <input type="number" id="preptime" name="recipe[preptime]" class="form-control" required>
+            <div class="invalid-feedback">
+                Please provide a valid number.
+            </div>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description:</label>
             <input type="text" id="description" name="recipe[description]" class="form-control" required>
+            <div class="invalid-feedback">
+                Please provide a valid description.
+            </div>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
         </div>
         <div class="mb-3">
             <label for="ingredients" class="form-label">Ingredients:</label>
             <input type="text" id="ingredients" name="recipe[ingredients]" class="form-control" required>
+            <div class="invalid-feedback">
+                Please provide valid ingredients.
+            </div>
         </div>
         <div class="mb-3">
             <label for="servings" class="form-label">Servings:</label>
             <input type="number" id="servings" name="recipe[servings]" class="form-control" required>
+            <div class="invalid-feedback">
+                Please provide a valid number.
+            </div>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
         </div>
         <div class="mb-3">
             <label for="instructions" class="form-label">Instructions:</label>
             <input type="text" id="instructions" name="recipe[instructions]" class="form-control" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Please provide valid instructions.
+            </div>
         </div>
         <div class="mb-3">
             <label for="image" class="form-label">Image:</label>
-            <input type="text" id="image" name="recipe[image]" class="form-control" >
+            <input type="text" id="image" name="recipe[image]" class="form-control" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Please provide a valid image URL.
+            </div>
         </div>
         <button type="submit" class="btn btn-primary">Create</button>
-       
     </form>
     </div>
 </div>

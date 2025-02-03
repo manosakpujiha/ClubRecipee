@@ -2,7 +2,7 @@
 <div class="row">
     <h1 class="text-center">Edit recipe</h1>
     <div class="col-6 offset-3">
-    <form action="/recipes/<%= recipe._id %>?_method=PUT" method="POST">
+    <form action="/recipes/<%= recipe._id %>?_method=PUT" method="POST" novalidate class="validate-form">
         <div class="mb-3">
             <label for="title" class="form-label">Title:</label>
             <input type="text" id="title" name="recipe[title]" class="form-control" required value="<%= recipe.title %>">
@@ -29,7 +29,7 @@
         </div>
         <div class="mb-3">
             <label for="image" class="form-label">Image:</label>
-            <input type="text" id="image" name="recipe[image]" class="form-control"  value="<%= recipe.image %>">
+            <input type="text" id="image" name="recipe[image]" class="form-control"  required value="<%= recipe.image %>">
         </div>
         <button type="submit" class="btn btn-info text-">Update Recipe </button>
     </form>
