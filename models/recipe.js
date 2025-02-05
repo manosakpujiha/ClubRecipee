@@ -28,4 +28,4 @@ RecipeSchema.post('findOneAndDelete', async function (doc) {
     }
 });
 
-module.exports = mongoose.model('Recipe', RecipeSchema); // Export the model so that it can be used in other files
+module.exports = mongoose.model('Recipe', RecipeSchema); 
