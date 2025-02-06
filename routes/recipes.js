@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const catchAsync = require('../helpers/catchAsync');
+const { isLoggedIn } = require('../middleware');
 const ExpressError = require('../helpers/ExpressError');
 const Recipe = require('../models/recipe');
 const { recipeSchema } = require('../validationSchemas');
@@ -19,43 +20,50 @@ router.get('/', catchAsync(async (req, res, next) => {
     const recipes = await Recipe.find({});
     res.render('recipes/index', { recipes });
 }));
-router.get('/new', (req, res) => {
-res.render('recipes/new');
+
+router.get('/new', isLoggedIn, (req, res) => {
+    res.render('recipes/new');
 });
-router.post('/', validateRecipe, catchAsync (async (req, res, next) => {
+
+router.post('/', isLoggedIn, validateRecipe, catchAsync (async (req, res, next) => {
     const recipe = new Recipe(req.body.recipe);
     await recipe.save();
     req.flash('success', 'New recipe created!');
     res.redirect(`/recipes/${recipe._id}`);
 }));
+
 router.get('/:id', catchAsync (async (req, res) => {
-const { id } = req.params;
-const recipe = await Recipe.findById(id).populate('reviews');
-if (!recipe) {
-    req.flash('error', 'Recipe not found!');
-    return res.redirect('/recipes');
-}
-res.render('recipes/details', { recipe});
+    const { id } = req.params;
+    const recipe = await Recipe.findById(id).populate('reviews');
+    if (!recipe) {
+        req.flash('error', 'Recipe not found!');
+        return res.redirect('/recipes');
+    }
+    res.render('recipes/details', { recipe});
 }));
-router.get('/:id/edit', catchAsync(async (req, res) => {
-const { id } = req.params;
-const recipe = await Recipe.findById(id);
-if (!recipe) {
-    req.flash('error', 'Recipe not found!');
-    return res.redirect('/recipes');
-}
-res.render('recipes/edit', { recipe });
+
+router.get('/:id/edit', isLoggedIn, catchAsync(async (req, res) => {
+    const { id } = req.params;
+    const recipe = await Recipe.findById(id);
+    if (!recipe) {
+        req.flash('error', 'Recipe not found!');
+        return res.redirect('/recipes');
+    }
+    res.render('recipes/edit', { recipe });
 }));
-router.put('/:id', validateRecipe, catchAsync (async (req, res) => {
-const { id } = req.params;
-const recipe = await Recipe.findByIdAndUpdate(id, { ...req.body.recipe }, { new: true });
-req.flash('success', 'Recipe updated!');
-res.redirect(`/recipes/${recipe._id}`);
+
+router.put('/:id', isLoggedIn, validateRecipe, catchAsync (async (req, res) => {
+    const { id } = req.params;
+    const recipe = await Recipe.findByIdAndUpdate(id, { ...req.body.recipe }, { new: true });
+    req.flash('success', 'Recipe updated!');
+    res.redirect(`/recipes/${recipe._id}`);
 }));
-router.delete('/:id', catchAsync(async (req, res) => {
-const { id } = req.params;
-await Recipe.findByIdAndDelete(id);
-req.flash('success', 'Recipe deleted!');
-res.redirect('/recipes');
+
+router.delete('/:id', isLoggedIn, catchAsync(async (req, res) => {
+    const { id } = req.params;
+    await Recipe.findByIdAndDelete(id);
+    req.flash('success', 'Recipe deleted!');
+    res.redirect('/recipes');
 }));
+
 module.exports = router;
