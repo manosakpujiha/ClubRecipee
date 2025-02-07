@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const catchAsync = require('../helpers/catchAsync');
-const Recipe = require('../models/recipe');
 const { isCreator, validateRecipe, isLoggedIn } = require('../middleware');
+const Recipe = require('../models/recipe');
 
 router.get('/', catchAsync(async (req, res, next) => {
     const recipes = await Recipe.find({});
@@ -23,12 +23,12 @@ router.post('/', isLoggedIn, validateRecipe, catchAsync (async (req, res, next) 
 
 router.get('/:id', catchAsync (async (req, res) => {
     const { id } = req.params;
-    const recipe = await Recipe.findById(id).populate({
+    const recipe = await Recipe.findById(id).populate('creator').populate({
         path: 'reviews',
         populate: {
             path: 'creator'
         }
-    }).populate('creator');
+    });
     if (!recipe) {
         req.flash('error', 'Recipe not found!');
         return res.redirect('/recipes');
