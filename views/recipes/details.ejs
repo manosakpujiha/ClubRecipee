@@ -2,20 +2,32 @@
 <!-- Recipe details -->
 <div class="row">
     <div class="col-6">
-        
-        <div class="card bg-dark text-white">
+        <div class="card bg-dark">
             <img src="<%= recipe.image %>" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title"><%= recipe.title %></h5>
-                <p class="card-text text-muted"><%= recipe.description %></p>
-                <div class="d-flex ">
-                    <p class="card-text"><strong>Preparation Time:</strong> <%= recipe.preptime %> minutes</p>
-                    <p class="card-text ms-5"><strong>Servings:</strong> <%= recipe.servings %></p>
+            <div class="card-body bg-man3 mt-3">
+                <h3 class="card-title"><%= recipe.title %></h3>
+            
+                <p class="card-text bg-man5 mb-5"><%= recipe.description %></p>
+                <div class="d-flex justify-content-between">
+                    <p class="card-text "><strong>Preparation Time:</strong> <span class="bg-man4"><%= recipe.preptime %> minutes</span></p>
+                    <p class="card-text me-3"><strong>Servings:</strong> <span class="bg-man4"><%= recipe.servings %></span></p>
                 </div>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>Ingredients:</strong> <%= recipe.ingredients %></li>
-                <li class="list-group-item"><strong>Instructions:</strong> <%= recipe.instructions %></li>
+                <li class="list-group-item bg-man3 mt-3"><strong>Ingredients:</strong> 
+                    <ul class="instructions-list list-inline">
+                        <% recipe.ingredients.split(',').forEach(function(ingredient) { %>
+                            <li class="instruction-item list-inline-item"><%= ingredient %></li>
+                        <% }) %>
+                    </ul>
+                </li>
+                <li class="list-group-item bg-man3 mt-3"><strong>Description:</strong>
+                    <ul class="instructions-list">
+                        <% recipe.instructions.split('\n').forEach(function(instruction) { %>
+                            <li class="instruction-item"><%= instruction %></li>
+                        <% }) %>
+                    </ul>
+                </li>
             </ul>
             <!-- Buttons -->
              <% if(currentUser && recipe.creator._id.equals(currentUser._id)) { %>
@@ -33,7 +45,7 @@
      <!-- Reviews -->
     <div class="col-6">
         <% if(currentUser) { %>
-            <h2>Please leave a review and rate the recipe.</h2>
+            <h5>Please leave a review and rate the recipe.</h5>
             <form action="/recipes/<%=recipe._id%>/reviews" method="POST" class="mb-4 validate-form" novalidate>
                 <div class="mb-3">
                     <label for="rating" class="form-label">Rating</label>
@@ -52,10 +64,10 @@
                 <button type="submit" class="btn btn-primary">Submit Review</button>
             </form>
         <% } else { %>
-            <h2>Please log in to leave a review.</h2>
+            <h5 class="bg-man5 mb-5">Please log in to leave a review.</h5>
         <% } %>
-        <h2>Reviews</h2>
-        <div class="reviews">
+        <h3>Reviews</h3>
+        <div class="reviews bg-man5">
             <% recipe.reviews.forEach(function(review) { %>
                 <div class="card mb-3">
                     <div class="card-body bg-dark">

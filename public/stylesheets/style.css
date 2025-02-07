@@ -53,3 +53,53 @@ a:hover {
 .text-light-green {
     color: #7CFC00; /* Light green color */
 }
+/* Form styles */
+.form-label {
+    font-weight: bold;
+}
+
+.form-control {
+    margin-bottom: 10px;
+}
+
+/* Instructions list styles */
+.instructions-list {
+    padding-left: 20px;
+    list-style-type: none;
+}
+
+.instruction-item {
+    margin-bottom: 5px;
+    color: #7CFC00; /* Light text color */
+    background-color: #343a40; /* Dark background color */
+    padding: 5px;
+    border-radius: 3px;
+}
+.bg-man1 {
+    background-color: #7CFC00;;
+    color: black;
+}
+
+.bg-man2 {
+    background-color: gold;
+    color: black;
+}   
+.bg-man3 {
+    background-color: rgb(40, 49, 43);
+    color: gold;
+}
+.bg-man4 {
+    background-color: #343a40;
+    color: #7CFC00;
+    display:inline-block;
+}
+.bg-man5 {
+    color: #7CFC00;
+}
+.bg-man6 {
+    background-color: #343a40;
+}
+.bg-man7 {
+    background-color: #343a40;
+    color: #7CFC00;
+}

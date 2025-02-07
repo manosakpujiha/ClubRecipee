@@ -8,12 +8,13 @@
                     <div class="col-md-4">
                         <img class="img-fluid" src="<%= recipe.image %>" alt="<%= recipe.title %>" >
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-8 bg-man7">
                         <div class="card-body">
-                            <h5 class="card-title"><a href="/recipes/<%=recipe._id %>"><%= recipe.title %></a></h5>
+                            <h5 class="card-title"><a class="bg-man3" href="/recipes/<%=recipe._id %>"><%= recipe.title %></a></h5>
                             <p class="card-text"><strong>Preparation Time:</strong> <%= recipe.preptime %> minutes</p>
                             <p class="card-text"><strong>Description:</strong> <%= recipe.description %></p>
                             <p class="card-text"><strong>Ingredients:</strong> <%= recipe.ingredients %></p>
+                            <p class="card-text"><strong>Recipe Creator:</strong> <%= recipe.creator.username %></p>
                             
                         </div>
                     </div>

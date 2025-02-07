@@ -4,9 +4,202 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Club Recipee</title>
+    <style>
+        /* Explore Page Styles */
+.container {
+    margin-top: 50px;
+}
+
+.card {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+}
+
+.card-title {
+    color: gold;
+}
+
+.card-text {
+    color: #ecf0f1;
+}
+
+.btn-primary {
+    background-color: #71dd05;
+    border-color: #71dd05;
+}
+
+.btn-primary:hover {
+    background-color: #448008;
+    border-color: #448008;
+}
+
+.btn-secondary {
+    background-color: #7CFC00;
+    border-color: #7CFC00;
+}
+
+.btn-secondary:hover {
+    background-color: #5cb85c;
+    border-color: #5cb85c;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-5 {
+    margin-top: 50px;
+}
+
+.mb-4 {
+    margin-bottom: 20px;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+.ms-2 {
+    margin-left: 10px;
+}
+    </style>
 </head>
 <body>
     <% layout('./layouts/boilerplate') %>
-    <h1>Welcome to Club Recipee</h1>
+    <div class="container mt-5">
+        <h1 class="text-center">Explore ClubRecipee</h1>
+
+        <!-- Featured Recipes -->
+        <section class="mt-5">
+            <h2 class="text-center">Featured Recipes</h2>
+            <div class="row">
+                <!-- Example Featured Recipe -->
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="https://example.com/recipe-image.jpg" class="card-img-top" alt="Recipe Title">
+                        <div class="card-body">
+                            <h5 class="card-title">Recipe Title</h5>
+                            <p class="card-text">A brief description of the recipe.</p>
+                            <a href="/recipes/recipe-id" class="btn btn-primary">View Recipe</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat for more featured recipes -->
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <section class="mt-5">
+            <h2 class="text-center">Categories</h2>
+            <div class="row">
+                <!-- Example Category -->
+                <div class="col-md-3">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Category Name</h5>
+                            <a href="/recipes?category=category-name" class="btn btn-primary">Browse</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat for more categories -->
+            </div>
+        </section>
+
+        <!-- Top Chefs -->
+        <section class="mt-5">
+            <h2 class="text-center">Top Chefs</h2>
+            <div class="row">
+                <!-- Example Top Chef -->
+                <div class="col-md-3">
+                    <div class="card mb-4 text-center">
+                        <img src="https://example.com/chef-profile.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Chef Username" style="width: 100px; height: 100px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Chef Username</h5>
+                            <a href="/users/chef-id" class="btn btn-primary">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat for more top chefs -->
+            </div>
+        </section>
+
+        <!-- Recent Reviews -->
+        <section class="mt-5">
+            <h2 class="text-center">Recent Reviews</h2>
+            <div class="row">
+                <!-- Example Recent Review -->
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Recipe Title</h5>
+                            <p class="card-text">This is a review of the recipe.</p>
+                            <p class="card-text"><small class="text-muted">Reviewed by Username</small></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat for more recent reviews -->
+            </div>
+        </section>
+
+        <!-- Search Bar -->
+        <section class="mt-5">
+            <h2 class="text-center">Search Recipes</h2>
+            <form action="/recipes" method="GET" class="d-flex justify-content-center">
+                <input type="text" name="search" class="form-control w-50" placeholder="Search for recipes...">
+                <button type="submit" class="btn btn-primary ms-2">Search</button>
+            </form>
+        </section>
+
+        <!-- Seasonal Recipes -->
+        <section class="mt-5">
+            <h2 class="text-center">Seasonal Recipes</h2>
+            <div class="row">
+                <!-- Example Seasonal Recipe -->
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="https://example.com/seasonal-recipe.jpg" class="card-img-top" alt="Seasonal Recipe Title">
+                        <div class="card-body">
+                            <h5 class="card-title">Seasonal Recipe Title</h5>
+                            <p class="card-text">A brief description of the seasonal recipe.</p>
+                            <a href="/recipes/seasonal-recipe-id" class="btn btn-primary">View Recipe</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat for more seasonal recipes -->
+            </div>
+        </section>
+
+        <!-- User Testimonials -->
+        <section class="mt-5">
+            <h2 class="text-center">User Testimonials</h2>
+            <div class="row">
+                <!-- Example User Testimonial -->
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <p class="card-text">This is a user testimonial about the application.</p>
+                            <p class="card-text"><small class="text-muted">- Username</small></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat for more user testimonials -->
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="mt-5 text-center">
+            <h2>Join ClubRecipee Today!</h2>
+            <p>Sign up to share your own recipes, leave reviews, and connect with other food enthusiasts.</p>
+            <a href="/register" class="btn btn-primary">Sign Up</a>
+            <a href="/login" class="btn btn-secondary">Log In</a>
+        </section>
 </body>
 </html>
