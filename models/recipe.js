@@ -10,6 +10,10 @@ const RecipeSchema = new Schema({
     preptime: Number, // Preparation time in minutes
     servings: Number, // Number of servings the recipe yields
     image: String,
+    creator: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     reviews: [
         {
             type: Schema.Types.ObjectId,

@@ -3,12 +3,12 @@ const Recipe = require('../models/recipe');
 const seedrecipes = require('./data');
 
 
-const MONGODB_URI = `mongodb+srv://manosakpujiha:UrXx4YCTKpaANGFk@clubrecipee-cluster.1x1x0.mongodb.net/?retryWrites=true&w=majority&appName=clubrecipee-clusterclub-recipee` 
-mongoose.connect(MONGODB_URI, {
-    dbName: 'club-recipee', // Explicitly specify the database name
-});  // Seed to MongoDB Atlas
+// const MONGODB_URI = `mongodb+srv://manosakpujiha:UrXx4YCTKpaANGFk@clubrecipee-cluster.1x1x0.mongodb.net/?retryWrites=true&w=majority&appName=clubrecipee-clusterclub-recipee` 
+// mongoose.connect(MONGODB_URI, {
+//     dbName: 'club-recipee', // Explicitly specify the database name
+// });  // Seed to MongoDB Atlas
 
-// mongoose.connect('mongodb://127.0.0.1:27017/club-recipee') // Seed to local database
+mongoose.connect('mongodb://127.0.0.1:27017/club-recipee') // Seed to local database
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

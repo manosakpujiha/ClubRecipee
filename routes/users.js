@@ -8,6 +8,7 @@ const User = require('../models/user');
 router.get('/register', (req, res) => {
     res.render('users/register');
 })
+
 router.post('/register', catchAsync(async (req, res) => {
     try {
         const { email, username, password } = req.body;
@@ -26,12 +27,14 @@ router.post('/register', catchAsync(async (req, res) => {
 router.get('/login', (req, res) => {
     res.render('users/login');
 });
+
 router.post('/login', storeReturnTo, passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), (req, res) => {
     req.flash('success', `Welcome back ${req.user.username}!`);
     const redirectUrl = res.locals.returnTo || '/recipes';
     delete req.session.returnTo;
     res.redirect(redirectUrl);
 });
+
 router.get('/logout', (req, res, next) => {
     const { username } = req.user;
     req.logout(function (err) {
