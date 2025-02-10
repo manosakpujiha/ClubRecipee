@@ -39,7 +39,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.set('trust proxy', 1); // Trust first proxy
+app.set('trust proxy', 1);
 
 const sessionConfig = {
     store: MongoStore.create({ mongoUrl: MONGODB_URI }),
@@ -49,9 +49,9 @@ const sessionConfig = {
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production', // Set secure to true in production
-        sameSite: 'lax', // Adjust sameSite attribute as needed
-        maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+        secure: process.env.NODE_ENV === 'production', 
+        sameSite: 'lax', 
+        maxAge: 1000 * 60 * 60 * 24 * 7 
     }
 };
 

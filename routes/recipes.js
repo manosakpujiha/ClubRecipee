@@ -4,18 +4,17 @@ const recipeControllers = require('../controllers/recipes');
 const catchAsync = require('../helpers/catchAsync');
 const { isCreator, validateRecipe, isLoggedIn } = require('../middleware');
 
-router.get('/', catchAsync(recipeControllers.viewAllRecipesPage));
+router.route('/')
+    .get(catchAsync(recipeControllers.viewAllRecipesPage))
+    .post(isLoggedIn, validateRecipe, catchAsync (recipeControllers.createNewRecipeData));
 
 router.get('/new', isLoggedIn, recipeControllers.viewNewRecipePage);            
 
-router.post('/', isLoggedIn, validateRecipe, catchAsync (recipeControllers.createNewRecipeData));
-
-router.get('/:id', catchAsync (recipeControllers.viewRecipeDetailsPage));
+router.route('/:id')
+    .get(catchAsync(recipeControllers.viewRecipeDetailsPage))
+    .put(isLoggedIn, isCreator, validateRecipe, catchAsync(recipeControllers.editRecipeData))
+    .delete(isLoggedIn, isCreator, catchAsync(recipeControllers.deleteRecipeData));
 
 router.get('/:id/edit', isLoggedIn, isCreator, catchAsync(recipeControllers.viewEditRecipePage));
-
-router.put('/:id', isLoggedIn, isCreator, validateRecipe, catchAsync (recipeControllers.editRecipeData));
-
-router.delete('/:id', isLoggedIn, isCreator, catchAsync(recipeControllers.deleteRecipeData));
 
 module.exports = router;
