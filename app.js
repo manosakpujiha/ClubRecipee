@@ -1,3 +1,6 @@
+// if (process.env.NODE_ENV !== 'production') {
+//     require('dotenv').config();
+// }
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -10,16 +13,14 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const MongoStore = require('connect-mongo');
 const dotenv = require('dotenv');
-dotenv.config();
-
 const userRoutes = require('./routes/users');
 const recipeRoutes = require('./routes/recipes');
 const reviewRoutes = require('./routes/reviews');
 
+dotenv.config();
 const MONGODB_URI = process.env.VERCEL_ENV === 'production' 
     ? process.env.MONGODB_URI_PROD
-    : 'mongodb://127.0.0.1:27017/club-recipee';
-
+    : process.env.MONGODB_URI_DEV;
 mongoose.connect(MONGODB_URI, {
     dbName: 'club-recipee',
 });
@@ -38,7 +39,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.set('trust proxy', 1);
 
 const sessionConfig = {

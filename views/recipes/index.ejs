@@ -6,7 +6,11 @@
             <div class="card bg-dark mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img class="img-fluid" src="<%= recipe.image %>" alt="<%= recipe.title %>" >
+                        <% if (recipe.images && recipe.images.length > 0) { %>
+                            <img class="img-fluid" src="<%= recipe.images[0].url %>" alt="<%= recipe.title %>">
+                        <% } else { %>
+                            <img class="img-fluid" src="/pics/default-image.jpg" alt="Default Image">
+                        <% } %>
                     </div>
                     <div class="col-md-8 bg-man7">
                         <div class="card-body">

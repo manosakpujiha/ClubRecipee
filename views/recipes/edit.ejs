@@ -2,7 +2,7 @@
 <div class="row">
     <h1 class="text-center">Edit recipe</h1>
     <div class="col-6 offset-3">
-    <form action="/recipes/<%= recipe._id %>?_method=PUT" method="POST" novalidate class="validate-form">
+    <form action="/recipes/<%= recipe._id %>?_method=PUT" method="POST" novalidate class="validate-form" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="title" class="form-label">Title:</label>
             <input type="text" id="title" name="recipe[title]" class="form-control" required value="<%= recipe.title %>">
@@ -65,8 +65,8 @@
             </div>
         </div>
         <div class="mb-3">
-            <label for="image" class="form-label">Image:</label>
-            <input type="text" id="image" name="recipe[image]" class="form-control" required value="<%= recipe.image %>">
+            <label for="image" class="form-label">Add Images:</label>
+            <input type="file" id="image" name="image" class="form-control" required value="<%= recipe.image %>" multiple>
             <div class="invalid-feedback">
                 Please provide a valid image URL.
             </div>

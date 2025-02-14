@@ -9,11 +9,20 @@ module.exports.viewNewRecipePage = (req, res) => {
 }
 
 module.exports.createNewRecipeData = async (req, res, next) => {
-    const recipe = new recipeModel(req.body.recipe);
-    recipe.creator = req.user._id;
-    await recipe.save();
-    req.flash('success', 'New recipe created!');
-    res.redirect(`/recipes/${recipe._id}`);
+    console.log('MAnos****************************************************req.body:', req.body);
+    console.log('MAnos****************************************************req.files:', req.files);
+    try {
+        const recipe = new recipeModel(req.body.recipe);
+        recipe.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
+        recipe.creator = req.user._id;
+        console.log('MAnos****************************************************recipe:', recipe);
+        await recipe.save();
+        req.flash('success', 'New recipe created!');
+        res.redirect(`/recipes/${recipe._id}`);
+    } catch (e) {
+        console.error(e);
+        req.flash('error', 'Something went wrong. Please try again.');
+    }
 }
 
 module.exports.viewRecipeDetailsPage = async (req, res) => {
@@ -24,7 +33,6 @@ module.exports.viewRecipeDetailsPage = async (req, res) => {
             path: 'creator'
         }
     }).populate('creator');
-    // console.log(recipe);
     if (!recipe) {
         req.flash('error', 'recipeModel not found!');
         return res.redirect('/recipes');
@@ -45,6 +53,9 @@ module.exports.viewEditRecipePage = async (req, res) => {
 module.exports.editRecipeData = async (req, res) => {
     const { id } = req.params;
     const recipe = await recipeModel.findByIdAndUpdate(id, { ...req.body.recipe }, { new: true });
+    const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    recipe.images.push(...imgs);
+    await recipe.save();
     req.flash('success', 'recipeModel updated!');
     res.redirect(`/recipes/${recipe._id}`);
 }
