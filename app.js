@@ -1,3 +1,6 @@
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -9,8 +12,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const MongoStore = require('connect-mongo');
-const dotenv = require('dotenv');
-dotenv.config();
+
 
 const userRoutes = require('./routes/users');
 const recipeRoutes = require('./routes/recipes');
@@ -18,7 +20,7 @@ const reviewRoutes = require('./routes/reviews');
 
 const MONGODB_URI = process.env.VERCEL_ENV === 'production' 
     ? process.env.MONGODB_URI_PROD
-    : 'mongodb://127.0.0.1:27017/club-recipee';
+    : process.env.MONGODB_URI_DEV;
 
 mongoose.connect(MONGODB_URI, {
     dbName: 'club-recipee',

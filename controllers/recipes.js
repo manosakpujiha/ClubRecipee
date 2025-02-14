@@ -10,8 +10,10 @@ module.exports.viewNewRecipePage = (req, res) => {
 
 module.exports.createNewRecipeData = async (req, res, next) => {
     const recipe = new recipeModel(req.body.recipe);
+    recipe.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     recipe.creator = req.user._id;
     await recipe.save();
+    console.log(recipe);
     req.flash('success', 'New recipe created!');
     res.redirect(`/recipes/${recipe._id}`);
 }
@@ -44,7 +46,10 @@ module.exports.viewEditRecipePage = async (req, res) => {
 
 module.exports.editRecipeData = async (req, res) => {
     const { id } = req.params;
-    const recipe = await recipeModel.findByIdAndUpdate(id, { ...req.body.recipe }, { new: true });
+    const recipe = await recipeModel.findByIdAndUpdate(id, { ...req.body.recipe });
+    const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    recipe.images.push(...imgs);
+    await recipe.save();
     req.flash('success', 'recipeModel updated!');
     res.redirect(`/recipes/${recipe._id}`);
 }

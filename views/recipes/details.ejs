@@ -3,11 +3,28 @@
 <!-- Recipe details -->
 <div class="row">
     <div class="col-6">
-        <div class="card bg-dark">
-            <img src="<%= recipe.image %>" class="card-img-top" alt="...">
+        <div id="recipe-image-carousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <% recipe.images.forEach((img, i) => { %>
+                    <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+                        <img src="<%= img.url %>" class="d-block w-100" alt="">
+                    </div>
+                <% }) %>
+            </div>
+            <% if(recipe.images.length > 1) { %>
+                <button class="carousel-control-prev" type="button" data-bs-target="#recipe-image-carousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon bg-man3" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#recipe-image-carousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon bg-man3" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+            <% } %>
+          </div>
+        <div class="card mb-3 bg-dark">
             <div class="card-body bg-man3 mt-3">
                 <h3 class="card-title"><%= recipe.title %></h3>
-            
                 <p class="card-text bg-man5 mb-5"><%= recipe.description %></p>
                 <div class="d-flex justify-content-between">
                     <p class="card-text "><strong>Preparation Time:</strong> <span class="bg-man4"><%= recipe.preptime %> minutes</span></p>
@@ -40,20 +57,20 @@
                 </div>
             <% } %>
         </div>
-        <footer class="card-footer text-muted">Created by: <%=recipe.creator.username%></footer>
+        <em><footer class="card-footer text-muted">Recipe uploaded by: <strong><%=recipe.creator.username%></strong></footer></em>
         
     </div>
      <!-- Reviews -->
     <div class="col-6">
         <% if(currentUser) { %>
-            <h5>Please leave a review and rate the recipe.</h5>
-            <form action="/recipes/<%=recipe._id%>/reviews" method="POST" class="mb-4 validate-form" novalidate>
-                <!-- <div class="mb-3">
-                    <label for="rating" class="form-label">Rating</label>
-                    <input type="range" class="form-range" min="1" max="5" name="" id="rating">
-                </div> -->
+            <!-- <h5>Please leave a review and rate the recipe.</h5> -->
+            <form action="/recipes/<%=recipe._id%>/reviews" method="POST" class="mb-4 validate-form  bg-man3" novalidate>
+                <div class="mb-3 instruction-item">
+                    <h3 class="bg-man5">Rate this recipe:</h3>
                     <fieldset class="starability-basic">
-                        <input type="radio" id="first-rate1" name="review[rating]" value="1" required />
+                        <legend></legend>
+                        <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" aria-label="No rating." checked/>
+                        <input type="radio" id="first-rate1" name="review[rating]" value="1"  />
                         <label for="first-rate1" title="Terrible">1 star</label>
                         <input type="radio" id="first-rate2" name="review[rating]" value="2" />
                         <label for="first-rate2" title="Not good">2 stars</label>
@@ -64,9 +81,10 @@
                         <input type="radio" id="first-rate5" name="review[rating]" value="5" />
                         <label for="first-rate5" title="Amazing">5 stars</label>
                     </fieldset>
-                <div class="mb-3">
-                    <label for="body" class="form-label">Review</label>
-                    <textarea class="form-control" name="review[body]" id="body" cols="30" rows="10" required></textarea>
+                </div>
+                <div class="mb-3 instruction-item">
+                    <label for="body" class="form-label mb-3 bg-man5"><h3 class="bg-man5">Please leave a review:</h3></label>
+                    <textarea class="form-control" name="review[body]" id="body" cols="0" rows="5" required></textarea>
                     <div class="invalid-feedback">
                         Please provide a valid review.
                     </div>
@@ -74,30 +92,32 @@
                         Looks good!
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit Review</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         <% } else { %>
             <h5 class="bg-man5 mb-5">Please log in to leave a review.</h5>
         <% } %>
-        <h3>Reviews</h3>
-        <div class="reviews bg-man5">
-            <% recipe.reviews.forEach(function(review) { %>
-                <div class="card mb-3">
-                    <div class="card-body bg-dark">
-                        <div class="card-title starability-result" data-rating="<%=review.rating%>">Rated:<%=  review.rating %> stars </div>
-                        <h6 class="card-subtitle mb-2 text-muted">By <%=review.creator.username%>  </h6>
-                        <p class="card-text"><%= review.body %></p>
-                        <% if(currentUser && review.creator._id.equals(currentUser._id)) { %> 
-                            <a href="/recipes/<%= recipe._id %>/reviews/<%= review._id %>/edit" class="card-link btn btn-sm btn-warning text-white">Edit</a>
-                            <form class="d-inline" action="/recipes/<%= recipe._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
-                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                            </form>
-                        <% } %>
+        <% if (recipe.reviews.length === 0) { %>
+            <h2 class="bg-man3">No reviews yet.</h2>
+        <% } else { %>
+            <h2 class="bg-man5">Reviews:</h2>
+            <div class="reviews bg-man3">
+                <% recipe.reviews.forEach(function(review) { %>
+                    <div class="card mb-3">
+                        <div class="card-body bg-dark">
+                            <div class="card-title starability-result" data-rating="<%=review.rating%>">Rated:<%=  review.rating %> stars </div>
+                            <h6 class="card-subtitle mb-2 text-muted">By <%=review.creator.username%>  </h6>
+                            <p class="card-text"><%= review.body %></p>
+                            <% if(currentUser && review.creator._id.equals(currentUser._id)) { %> 
+                                <a href="/recipes/<%= recipe._id %>/reviews/<%= review._id %>/edit" class="card-link btn btn-sm btn-warning text-white">Edit</a>
+                                <form class="d-inline" action="/recipes/<%= recipe._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            <% } %>
+                        </div>
                     </div>
-                </div>
-            <% }) %>
-        </div>
-       
+                <% }) %>
+            </div>
+        <% } %>
     </div>
-
 </div>
