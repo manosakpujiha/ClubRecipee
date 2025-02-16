@@ -21,12 +21,15 @@ const MONGODB_URI = process.env.VERCEL_ENV === 'production'
     ? process.env.MONGODB_URI_PROD
     : process.env.MONGODB_URI_DEV;
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-    console.log('Connected to MongoDB');
-});
-mongoose.connect(MONGODB_URI);
+
+    mongoose.connect(MONGODB_URI).then(() => {
+        console.log('Connected to MongoDB');
+    }).catch(err => {
+        console.error('Connection error:', err);
+    });
+    
+    const db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error:'));
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -77,7 +80,7 @@ app.get('/', (req, res) => {
 });
 
 app.all('*', (req, res, next) => {
-    next(res.render('404'));
+    res.status(404).render('404');
 });
 
 app.use((err, req, res, next) => {
