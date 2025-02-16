@@ -7,7 +7,6 @@ const multer = require('multer');
 const { storage } = require('../cloudinary');
 const upload = multer({ storage });
 
-
 router.route('/')
     .get(catchAsync(recipeControllers.viewAllRecipesPage))
     .post(isLoggedIn, upload.array('image'), validateRecipe, catchAsync (recipeControllers.createNewRecipeData));

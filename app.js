@@ -13,7 +13,6 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const MongoStore = require('connect-mongo');
 
-
 const userRoutes = require('./routes/users');
 const recipeRoutes = require('./routes/recipes');
 const reviewRoutes = require('./routes/reviews');
@@ -22,15 +21,12 @@ const MONGODB_URI = process.env.VERCEL_ENV === 'production'
     ? process.env.MONGODB_URI_PROD
     : process.env.MONGODB_URI_DEV;
 
-mongoose.connect(MONGODB_URI, {
-    dbName: 'club-recipee',
-});
-
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
     console.log('Connected to MongoDB');
 });
+mongoose.connect(MONGODB_URI);
 
 const app = express();
 const port = process.env.PORT || 3000;
