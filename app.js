@@ -12,24 +12,17 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const MongoStore = require('connect-mongo');
-
 const userRoutes = require('./routes/users');
 const recipeRoutes = require('./routes/recipes');
 const reviewRoutes = require('./routes/reviews');
 
-const MONGODB_URI = process.env.VERCEL_ENV === 'production' 
-    ? process.env.MONGODB_URI_PROD
-    : process.env.MONGODB_URI_DEV;
-
-
-    mongoose.connect(MONGODB_URI).then(() => {
-        console.log('Connected to MongoDB');
-    }).catch(err => {
-        console.error('Connection error:', err);
-    });
-    
-    const db = mongoose.connection;
-    db.on('error', console.error.bind(console, 'connection error:'));
+const MONGODB_URI = process.env.VERCEL_ENV === 'production' ? process.env.MONGODB_URI_PROD : process.env.MONGODB_URI_DEV;
+mongoose.connect(MONGODB_URI, {dbName: 'club-recipee'}).then(() => {
+    console.log('Connected to MongoDB');
+}).catch(err => {
+    console.error('Connection error:', err);
+});
+mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
 
 const app = express();
 const port = process.env.PORT || 3000;
