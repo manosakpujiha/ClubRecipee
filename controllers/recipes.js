@@ -25,7 +25,6 @@ module.exports.viewRecipeDetailsPage = async (req, res) => {
             path: 'creator'
         }
     }).populate('creator');
-    // console.log(recipe);
     if (!recipe) {
         req.flash('error', 'recipeModel not found!');
         return res.redirect('/recipes');
