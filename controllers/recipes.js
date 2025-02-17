@@ -11,9 +11,9 @@ module.exports.viewNewRecipePage = (req, res) => {
 module.exports.createNewRecipeData = async (req, res, next) => {
     const recipe = new recipeModel(req.body.recipe);
     // recipe.images = await req.files.map(f => ({ url: f.path, filename: f.filename }));
-    recipe.creator = await req.user._id;
+    recipe.creator = req.user._id;
     await recipe.save();
-    console.log(recipe);
+    // console.log(recipe);
     req.flash('success', 'New recipe created!');
     res.send('it worked!');
     // res.redirect(`/recipes/${recipe._id}`);
