@@ -9,14 +9,15 @@ module.exports.viewNewRecipePage = (req, res) => {
 }
 
 module.exports.createNewRecipeData = async (req, res, next) => {
-    const recipe = new recipeModel(req.body.recipe);
+    res.send(req.body, req.files);
+    // const recipe = new recipeModel(req.body.recipe);
     // recipe.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
-    recipe.creator = req.user._id;
-    await recipe.save();
+    // recipe.creator = req.user._id;
+    // await recipe.save();
     // console.log(recipe);
     // req.flash('success', 'New recipe created!');
     // res.send('it worked!');
-    res.redirect(`/recipes/${recipe._id}`);
+    // res.redirect(`/recipes/${recipe._id}`);
 }
 
 module.exports.viewRecipeDetailsPage = async (req, res) => {
