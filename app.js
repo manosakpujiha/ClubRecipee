@@ -17,7 +17,7 @@ const recipeRoutes = require('./routes/recipes');
 const reviewRoutes = require('./routes/reviews');
 
 const MONGODB_URI = process.env.VERCEL_ENV === 'production' ? process.env.MONGODB_URI_PROD : process.env.MONGODB_URI_DEV;
-mongoose.connect(MONGODB_URI).then(() => {
+mongoose.connect(MONGODB_URI, {dbName : 'club-recipee'}).then(() => {
     console.log('Connected to MongoDB');
 }).catch(err => {
     console.error('Connection error:', err);
@@ -32,9 +32,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.set('trust proxy', 1);
-
 const sessionConfig = {
     store: MongoStore.create({ mongoUrl: MONGODB_URI }),
     name: 'session',
