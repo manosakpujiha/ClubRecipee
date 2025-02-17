@@ -2,7 +2,7 @@
 <div class="row">
     <h1 class="text-center">Add a new recipe</h1>
     <div class="col-6 offset-3">
-    <form action="/recipes" method="POST" novalidate class="validate-form" enctype="multipart/form-data">
+    <form action="/recipes" method="POST" novalidate  enctype="multipart/form-data">
         <div class="mb-3">
             <label for="title" class="form-label">Title:</label>
             <input type="text" id="title" name="recipe[title]" class="form-control" required>
@@ -73,7 +73,7 @@
         </div> -->
         <div class="mb-3">
             <label for="image" class="form-label">Image:</label>
-            <input type="file" name="image" id="image" multiple>
+            <input type="file" name="images" id="images" multiple>
             
         </div>
         <button type="submit" class="btn btn-primary">Create</button>
