@@ -103,3 +103,77 @@ a:hover {
     background-color: #343a40;
     color: #7CFC00;
 }
+
+/* Basic resets */
+/* * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  } */
+/*   
+  body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    color: #333;
+  } */
+  
+  /* Main container styling */
+  .container-image-input {
+    /* max-width: 600px; */
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #343a40;
+    border-radius: 4px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+/*   
+  h1 {
+    margin-bottom: 20px;
+  } */
+  
+  /* Upload input label */
+  .image-upload-container {
+    margin-bottom: 20px;
+    position: relative;
+  }
+  
+  .upload-label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: gold;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  /* Hidden file input */
+  #image-input {
+    opacity: 0;
+    position: absolute;
+    left: -9999px;
+  }
+  
+  /* Hover effect on label */
+  .upload-label:hover {
+    background-color: goldenrod;
+  }
+  
+  /* Preview container styling */
+  .preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  /* Preview images */
+  .preview-container img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  

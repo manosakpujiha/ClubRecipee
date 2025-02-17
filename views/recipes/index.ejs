@@ -1,11 +1,15 @@
 <% layout('layouts/boilerplate') %>
-
     <h1>All Recipes</h1>
     <div>
         <% recipes.forEach(recipe => { %>
             <div class="card bg-dark mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
+                        <% if (recipe.images && recipe.images.length > 0) { %>
+                            <img class="img-fluid" src="<%= recipe.images[0].url %>" alt="<%= recipe.title %>">
+                        <% } else { %>
+                            <img class="img-fluid" src="/pics/default-image.jpg" alt="Default Image">
+                        <% } %>
                     </div>
                     <div class="col-md-8 bg-man7">
                         <div class="card-body">
@@ -14,12 +18,9 @@
                             <p class="card-text"><strong>Description:</strong> <%= recipe.description %></p>
                             <p class="card-text"><strong>Ingredients:</strong> <%= recipe.ingredients %></p>
                             <p class="card-text"><strong>Recipe Creator:</strong> <%= recipe.creator.username %></p>
-                            
                         </div>
                     </div>
                 </div>
             </div>
-
-             
         <% }) %>
     </div>

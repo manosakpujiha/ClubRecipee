@@ -1,0 +1,10 @@
+#instructions, #ingredients, #description, #title, #servings, #preptime {
+    background-color: #000; 
+    color: #7CFC00;        
+}
+
+
+#instructions:focus, #ingredients:focus, #description:focus, #title:focus, #servings:focus, #preptime:focus {
+    outline: none;           
+    border: 2px solid #008cba; 
+}
