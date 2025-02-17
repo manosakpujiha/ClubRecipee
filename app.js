@@ -15,7 +15,6 @@ const MongoStore = require('connect-mongo');
 const userRoutes = require('./routes/users');
 const recipeRoutes = require('./routes/recipes');
 const reviewRoutes = require('./routes/reviews');
-
 const MONGODB_URI = process.env.VERCEL_ENV === 'production' ? process.env.MONGODB_URI_PROD : process.env.MONGODB_URI_DEV;
 mongoose.connect(MONGODB_URI, {dbName : 'club-recipee'}).then(() => {
     console.log('Connected to MongoDB');
@@ -23,7 +22,6 @@ mongoose.connect(MONGODB_URI, {dbName : 'club-recipee'}).then(() => {
     console.error('Connection error:', err);
 });
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
-
 const app = express();
 const port = process.env.PORT || 3000;
 app.engine('ejs', ejsMate);
@@ -46,7 +44,6 @@ const sessionConfig = {
         maxAge: 1000 * 60 * 60 * 24 * 7 
     }
 };
-
 app.use(session(sessionConfig));
 app.use(flash());
 app.use(passport.initialize());
@@ -54,14 +51,12 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     next();
 });
-
 app.use('/', userRoutes);
 app.use('/recipes', recipeRoutes);
 app.use('/recipes/:id/reviews', reviewRoutes);
