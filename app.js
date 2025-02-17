@@ -15,7 +15,8 @@ const MongoStore = require('connect-mongo');
 const userRoutes = require('./routes/users');
 const recipeRoutes = require('./routes/recipes');
 const reviewRoutes = require('./routes/reviews');
-const MONGODB_URI = process.env.VERCEL_ENV === 'production' ? process.env.MONGODB_URI_PROD : process.env.MONGODB_URI_PROD;
+const MONGODB_URI = process.env.MONGODB_URI_PROD; 
+// const MONGODB_URI = process.env.VERCEL_ENV === 'production' ? process.env.MONGODB_URI_PROD : process.env.MONGODB_URI_PROD;
 mongoose.connect(MONGODB_URI, {dbName : 'club-recipee'}).then(() => {
     console.log('Connected to MongoDB');
 }).catch(err => {
