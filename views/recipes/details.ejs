@@ -2,12 +2,12 @@
 <link rel="stylesheet" href="/stylesheets/star-rating.css">
 <!-- Recipe details -->
 <div class="row">
-    <div class="col-6">
+    <div class="col-md-6 col-12">
         <div id="recipe-image-carousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <% recipe.images.forEach((img, i) => { %>
                     <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
-                        <img src="<%= img.url %>" class="d-block w-100" alt="">
+                        <img src="<%= img.url %>" class="d-block w-100 img-fluid" alt="">
                     </div>
                 <% }) %>
             </div>
@@ -61,7 +61,7 @@
         
     </div>
      <!-- Reviews -->
-    <div class="col-6">
+    <div class="col-md-6 col-12">
         <% if(currentUser) { %>
             <!-- <h5>Please leave a review and rate the recipe.</h5> -->
             <form action="/recipes/<%=recipe._id%>/reviews" method="POST" class="mb-4 validate-form  bg-man3" novalidate>
