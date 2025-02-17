@@ -9,7 +9,7 @@ module.exports.viewNewRecipePage = (req, res) => {
 }
 
 module.exports.createNewRecipeData = async (req, res, next) => {
-    res.send(req.body, req.files);
+    res.send("it worked!");
     // const recipe = new recipeModel(req.body.recipe);
     // recipe.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     // recipe.creator = req.user._id;
