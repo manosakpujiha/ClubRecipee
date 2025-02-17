@@ -9,7 +9,7 @@ const { upload } = require('../cloudinary');
 
 router.route('/')
     .get(catchAsync(recipeControllers.viewAllRecipesPage))
-    .post(isLoggedIn, upload.array('images'), catchAsync (recipeControllers.createNewRecipeData));
+    .post(isLoggedIn, upload.array('images'), validateRecipe, catchAsync (recipeControllers.createNewRecipeData));
 
 router.get('/new', isLoggedIn, recipeControllers.viewNewRecipePage);            
 
