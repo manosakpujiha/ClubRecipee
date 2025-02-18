@@ -36,7 +36,7 @@ app.set('trust proxy', 1);
 const sessionConfig = {
     store: MongoStore.create({ mongoUrl: MONGODB_URI }),
     name: 'session',
-    secret: process.env.SESSION_SECRET || 'thisshouldbeabettersecret!',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
