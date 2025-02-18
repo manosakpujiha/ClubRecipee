@@ -63,8 +63,11 @@ app.use('/', userRoutes);
 app.use('/recipes', recipeRoutes);
 app.use('/recipes/:id/reviews', reviewRoutes);
 
+// app.get('/', (req, res) => {
+//     res.render('recipes');
+// });
 app.get('/', (req, res) => {
-    res.render('home');
+    res.redirect('/recipes');
 });
 
 app.all('*', (req, res, next) => {
