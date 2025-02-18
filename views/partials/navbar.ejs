@@ -8,21 +8,37 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-              <a class="nav-link text-light-green" href="/">Explore</a>
-              <a class="nav-link text-light-green" href="/recipes">Recipe Library</a>
-              <a class="nav-link text-light-green" href="/recipes/new">Create a recipe</a>
-              <a class="nav-link text-light-green" href="/announcements">Announcements</a>
-              <a class="nav-link text-light-green" href="/notifications">Notifications</a>
-              <a class="nav-link text-light-green" href="/about">About</a>
+              <a class="nav-link text-gold" href="/explore">Explore</a>
+              <a class="nav-link text-gold" href="/recipes">Recipe Library</a>
+              <a class="nav-link text-gold" href="/recipes/new">Create a recipe</a>
+              <!-- <a class="nav-link text-light-green" href="/announcements">Announcements</a> -->
+              <!-- <a class="nav-link text-light-green" href="/notifications">Notifications</a> -->
+              <!-- <a class="nav-link text-light-green" href="/about">About</a> -->
           </div>
             <div class="navbar-nav ms-auto">
                 <% if (currentUser) { %>
-                    <a class="nav-link text-light-green" href="/profile"><%= currentUser.username%></a>
-                    <a class="nav-link text-light-green" href="/logout">Logout</a>
-                <% } else { %>
-                    <a class="nav-link text-light-green" href="/register">Register</a>
-                    <a class="nav-link text-light-green" href="/login">Login</a>
-                <% } %>
+                    <div class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle theme-nav-link" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <%= currentUser.username %>
+                      </a>
+                      <ul class="dropdown-menu dropdown-menu-end theme-dropdown-menu" aria-labelledby="userDropdown">
+                        <!-- Uncomment below if you add a profile page
+                        <li><a class="dropdown-item theme-dropdown-item" href="/profile">Profile</a></li> -->
+                        <li><a class="dropdown-item theme-dropdown-item" href="/logout">Logout</a></li>
+                      </ul>
+                    </div>
+                  <% } else { %>
+                    <div class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle theme-nav-link" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Account
+                      </a>
+                      <ul class="dropdown-menu dropdown-menu-end theme-dropdown-menu" aria-labelledby="accountDropdown">
+                        <li><a class="dropdown-item theme-dropdown-item" href="/register">Register</a></li>
+                        <li><a class="dropdown-item theme-dropdown-item" href="/login">Login</a></li>
+                      </ul>
+                    </div>
+                  <% } %>
+                
             </div>
       </div>
   </div>

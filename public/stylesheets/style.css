@@ -103,19 +103,11 @@ a:hover {
     background-color: #343a40;
     color: #7CFC00;
 }
+.text-gold {
+    color: gold !important;
+}
 
-/* Basic resets */
-/* * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  } */
-/*   
-  body {
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
-    color: #333;
-  } */
+
   
   /* Main container styling */
   .container-image-input {
@@ -127,11 +119,7 @@ a:hover {
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
-/*   
-  h1 {
-    margin-bottom: 20px;
-  } */
-  
+
   /* Upload input label */
   .image-upload-container {
     margin-bottom: 20px;
@@ -175,5 +163,26 @@ a:hover {
     object-fit: cover;
     border-radius: 4px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  .theme-brand {
+    color:  #7CFC00; /* Example: a light green shade */
+  }
+  
+  .theme-nav-link {
+    color:  #7CFC00 !important;
+  }
+  
+  .theme-dropdown-menu {
+    background-color: #2C3E50; /* Example: a dark blue-gray background */
+    border: none;
+  }
+  
+  .theme-dropdown-item {
+    color: gold;
+  }
+  
+  .theme-dropdown-item:hover {
+    background-color: black; /* Example: an accent color from your theme */
+    color: gold;
   }
   

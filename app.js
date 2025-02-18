@@ -64,10 +64,13 @@ app.use('/recipes', recipeRoutes);
 app.use('/recipes/:id/reviews', reviewRoutes);
 
 // app.get('/', (req, res) => {
-//     res.render('recipes');
+//     res.render('home');
 // });
 app.get('/', (req, res) => {
     res.redirect('/recipes');
+});
+app.get('/explore', (req, res) => {
+    res.render('explore'); // Assumes "home.ejs" contains your Explore page content
 });
 
 app.all('*', (req, res, next) => {
