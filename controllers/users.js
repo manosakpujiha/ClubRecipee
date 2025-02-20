@@ -24,13 +24,6 @@ module.exports.viewLoginPage = (req, res) => {
     res.render('users/login');
 }
 
-// module.exports.loginUser = (req, res) => {
-//     const { username } = req.user;
-//     req.flash('success', `Welcome back ${username}!`);
-//     const redirectUrl = req.session.returnTo || '/recipes';
-//     delete req.session.returnTo;
-//     res.redirect(redirectUrl);
-// }
 
 module.exports.loginUser = (req, res) => {
     const { username } = req.user;
