@@ -67,12 +67,11 @@ Before you begin, ensure you have the following installed:
    git clone https://your-repository-url.git
    cd ClubRecipee
 
-   Below is a detailed GitHub README.md file for your project. You can copy and paste this directly into your repository.
 
 ```markdown
 # ClubRecipee
 
-ClubRecipee is a community-driven recipe sharing web application that allows users to create, share, review, and explore recipes in an intuitive and secure environment. Built with a full-stack JavaScript approach, the project integrates Express.js, MongoDB, EJS, Passport.js, and Cloudinary to deliver a rich user experience across devices.
+ClubRecipee is a community-driven recipe-sharing web application that allows users to create, share, review, and explore recipes in an intuitive and secure environment. Built with a full-stack JavaScript approach, the project integrates Express.js, MongoDB, EJS, Passport.js, and Cloudinary to deliver a rich user experience across devices.
 
 ---
 
@@ -117,7 +116,7 @@ ClubRecipee is designed to provide a platform for culinary enthusiasts to share 
 - **Robust Error Handling:**  
   - Middleware for handling errors, validation, and feedback through flash messages.
 - **Scalable Data Storage:**  
-  - MongoDB used for storing recipes, user profiles, and session data.
+  - MongoDB is used for storing recipes, user profiles, and session data.
 
 ---
 
